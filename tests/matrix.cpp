@@ -72,7 +72,7 @@ TEST_CASE("adding matrix")
     matrix_t<int> A, B, C;
     std::istringstream istream1{ input_A };
     std::istringstream istream2{ input_B };
-    std::istringstream istream3{ input_B };
+    std::istringstream istream3{ input_C };
 	
     REQUIRE(A.read(istream1));
     REQUIRE(B.read(istream2));
