@@ -317,19 +317,19 @@ TEST_CASE("assignment with substraction")
         "1 1 1\n"
         "2 2 2" };
     
-    matrix_t<int> matrix1, matrix2;
-    std::istringstream istream1{ input };
-    std::istringstream istream2{ input2 };
-    REQUIRE(matrix1.read(istream1));
-    REQUIRE(matrix2.read(istream2));
+    matrix_t<int> A, B, C;
+	
+    std::istringstream istream1{ input_A };
+    std::istringstream istream2{ input_B };
+    std::istringstream istream3{ input_C };
     
-    REQUIRE_NOTHROW( matrix1.collumns() == matrix2.collumns() && matrix1.rows() == matrix2.rows() );
+    REQUIRE(A.read(istream1));
+    REQUIRE(B.read(istream2));
+    REQUIRE(C.read(istream3));
     
-    matrix1 -= matrix2;
-    std::ostringstream ostream;
-    matrix1.write( ostream );
+    REQUIRE_NOTHROW( A.collumns() == B.collumns() && A.rows() == B.rows() );
     
-    REQUIRE (input3 == ostream.str());
+    REQUIRE ( ( A -= B ) == C );
 }
 
 
