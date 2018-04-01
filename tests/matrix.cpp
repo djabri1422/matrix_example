@@ -155,36 +155,38 @@ TEST_CASE("substracting matrix")
 
 TEST_CASE ("multiplication matrix")
 {
-    std::string input
+    std::string input_A
     {
         "3, 3\n"
         "1 1 1\n"
         "2 2 2\n"
         "3 3 3" };
-    std::string input2
+    std::string input_B
     {
         "3, 3\n"
         "3 3 3\n"
         "4 4 4\n"
         "5 5 5" };
-    std::string input3
+    std::string input_C
     {
         "3, 3\n"
         "12 12 12\n"
         "24 24 24\n"
         "36 36 36" };
-    matrix_t<int> matrix1, matrix2;
-    std::istringstream istream1{ input };
-    std::istringstream istream2{ input2 };
-    REQUIRE(matrix1.read(istream1));
-    REQUIRE(matrix2.read(istream2));
+	
+    matrix_t<int> A, B, C;
+	
+    std::istringstream istream1{ input_A };
+    std::istringstream istream2{ input_B };
+    std::istringstream istream3{ input_C };
+	
+    REQUIRE(A.read(istream1));
+    REQUIRE(B.read(istream2));
+    REQUIRE(C.read(istream3));
     
-    REQUIRE_NOTHROW( matrix1.collumns() == matrix2.rows() );
-        
-    std::ostringstream stream;
-    (matrix1 * matrix2).write( stream );
-    
-    REQUIRE( input3 == stream.str() );
+    REQUIRE_NOTHROW( A.collumns() == B.rows() );
+       
+    REQUIRE( ( A * B ) == C );
 }
 
 TEST_CASE ("assignment matrix")
@@ -218,38 +220,44 @@ TEST_CASE ("assignment matrix")
 
 TEST_CASE ("assignment with multiplication")
 {
-    std::string input
+    std::string input_A
     {
         "3, 3\n"
         "1 1 1\n"
         "2 2 2\n"
-        "3 3 3" };
-    std::string input2
+        "3 3 3" 
+    };
+	
+    std::string input_B
     {
         "3, 3\n"
         "3 3 3\n"
         "4 4 4\n"
-        "5 5 5" };
-    std::string input3
+        "5 5 5"
+    };
+	
+    std::string input_C
     {
         "3, 3\n"
         "12 12 12\n"
         "24 24 24\n"
-        "36 36 36" };
+        "36 36 36" 
+    };
     
-    matrix_t<int> matrix1, matrix2;
-    std::istringstream istream1{ input };
-    std::istringstream istream2{ input2 };
-    REQUIRE(matrix1.read(istream1));
-    REQUIRE(matrix2.read(istream2));
+    matrix_t<int> A, B, C;
+	
+    std::istringstream istream1{ input_A };
+    std::istringstream istream2{ input_B };
+    std::istringstream istream3{ input_C };
+	
+    REQUIRE(A.read(istream1));
+    REQUIRE(B.read(istream1));
+    REQUIRE(C.read(istream2));
     
-    REQUIRE_NOTHROW( matrix1.collumns() == matrix2.rows() );
+    REQUIRE_NOTHROW( A.collumns() == B.rows() );
     
-    matrix1 *= matrix2;
-    std::ostringstream ostream;
-    matrix1.write( ostream );
-    
-    REQUIRE (input3 == ostream.str());
+
+    REQUIRE ( ( A * B ) == C );
 }
 
 TEST_CASE("assignment with adding")
