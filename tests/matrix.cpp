@@ -133,7 +133,7 @@ TEST_CASE("substracting matrix")
         "1 1 1\n"
         "1 1 1\n"
         "1 1 1" };
-    std::string inputC
+    std::string input_C
     {
         "3, 3\n"
         "2 2 2\n"
