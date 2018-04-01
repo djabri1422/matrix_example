@@ -17,7 +17,7 @@ public:
     std::size_t collumns() const;
     
     
-    bool operator==(const matrix&) const;
+    bool operator==(const matrix_t&) const;
     matrix_t operator +( matrix_t const & other ) const;
     matrix_t operator -( matrix_t const & other ) const;
     matrix_t operator *( matrix_t const & other ) const;
