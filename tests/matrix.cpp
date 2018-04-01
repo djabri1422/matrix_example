@@ -251,8 +251,8 @@ TEST_CASE ("assignment with multiplication")
     std::istringstream istream3{ input_C };
 	
     REQUIRE(A.read(istream1));
-    REQUIRE(B.read(istream1));
-    REQUIRE(C.read(istream2));
+    REQUIRE(B.read(istream2));
+    REQUIRE(C.read(istream3));
     
     REQUIRE_NOTHROW( A.collumns() == B.rows() );
     
