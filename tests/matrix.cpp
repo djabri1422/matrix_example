@@ -105,56 +105,52 @@ TEST_CASE("adding matrix double")
         "5 5 5\n"
         "5 5 5" };
     matrix_t<double> A, B, C;
+	
     std::istringstream istream1{ input_A };
     std::istringstream istream2{ input_B };
-    std::istringstream istream3{ input_C };
+    std::istringstream istream3{ input_C }; 
+	
     REQUIRE(A.read(istream1));
     REQUIRE(B.read(istream2));
     REQUIRE(C.read(istream3));
 
-    REQUIRE_NOTHROW( matrix1.collumns() == matrix2.collumns() && matrix1.rows() == matrix2.rows() );
+    REQUIRE_NOTHROW( A.collumns() == B.collumns() && A.rows() == B.rows() );
 	  
     REQUIRE( ( A + B ) == C );
 }
 
 TEST_CASE("substracting matrix")
 {
-    std::string input
+    std::string input_A
     {
         "3, 3\n"
         "3 3 3\n"
         "2 2 2\n"
         "3 3 3" };
-    std::string input2
+    std::string input_B
     {
         "3, 3\n"
         "1 1 1\n"
         "1 1 1\n"
         "1 1 1" };
-    std::string input3
+    std::string inputC
     {
         "3, 3\n"
         "2 2 2\n"
         "1 1 1\n"
         "2 2 2" };
-    matrix_t<int> matrix1, matrix2;
-    std::istringstream istream1{ input };
-    std::istringstream istream2{ input2 };
-    REQUIRE(matrix1.read(istream1));
-    REQUIRE(matrix2.read(istream2));
+    matrix_t<int> A, B, C;
+    std::istringstream istream1{ input_A };
+    std::istringstream istream2{ input_B };
+    std::istringstream istream3{ input_C };
+	
+    REQUIRE( A.read(istream1));
+    REQUIRE( B.read(istream2));
+    REQUIRE( C.read(istream3));
     
-    REQUIRE(matrix1.rows() == 3);
-    REQUIRE(matrix1.collumns() == 3);
-        
-    REQUIRE(matrix2.rows() == 3);
-    REQUIRE(matrix2.collumns() == 3);
+    REQUIRE_NOTHROW( A.collumns() == B.collumns() && A.rows() == B.rows() );
     
-    REQUIRE_NOTHROW( matrix1.collumns() == matrix2.collumns() && matrix1.rows() == matrix2.rows() );
-    
-    std::ostringstream stream;
-    (matrix1-matrix2).write(stream);
-    
-    REQUIRE( input3 == stream.str());
+    REQUIRE( ( A - B ) == C );
 }
 
 TEST_CASE ("multiplication matrix")
