@@ -16,6 +16,8 @@ public:
     std::size_t rows() const;
     std::size_t collumns() const;
     
+    
+    bool operator==(const matrix&) const;
     matrix_t operator +( matrix_t const & other ) const;
     matrix_t operator -( matrix_t const & other ) const;
     matrix_t operator *( matrix_t const & other ) const;
@@ -68,6 +70,26 @@ matrix_t<T> & matrix_t<T>::operator =( matrix_t const & other )
         collumns_ = other.collumns_;
     }
     return *this;
+}
+
+template <typename T>
+bool matrix_t<T>::operator==(matrix_t const & other) const
+{
+	if (rows_ != other.rows_ || collumns_ != other.collumns_)
+	{
+		return false;
+	}
+
+	for (size_t i = 0; i < rows_; i++)
+	{
+		for (size_t j = 0; j < collumns_; j++)
+		{
+			if (elements_[i][j] != other.elements_[i][j])
+				return false;
+		}
+	}
+
+	return true;
 }
 
 template <typename T>
