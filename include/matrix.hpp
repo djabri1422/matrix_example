@@ -152,7 +152,7 @@ matrix_t<T> matrix_t<T>::operator -( matrix_t const & other ) const
     return result;
 }
 
-template<typename T>
+template <typename T>
 matrix_t<T> matrix_t<T>::operator *( matrix_t const & other ) const
 {
     assert(collumns_ == other.rows());
@@ -176,7 +176,7 @@ matrix_t<T> matrix_t<T>::operator *( matrix_t const & other ) const
             }
         }
     }
-    /* умножение строку первой матрицы на столбец второй, чтобы получить столбец третьей*/
+	
     result.rows_ = rows_;
     result.collumns_ = other.collumns_;
     return result;
